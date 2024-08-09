@@ -3,7 +3,9 @@ package jml.noteschallenge.notesapp.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jml.noteschallenge.notesapp.domain.categoria.Categoria;
+
 import jml.noteschallenge.notesapp.domain.categoria.CategoriaRepository;
+import jml.noteschallenge.notesapp.domain.categoria.TituloColor;
 import jml.noteschallenge.notesapp.domain.nota.*;
 import jml.noteschallenge.notesapp.domain.usuario.Usuario;
 import jml.noteschallenge.notesapp.domain.usuario.UsuarioRepository;
@@ -19,6 +21,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:3000","*"}, maxAge = 3600 )
 
@@ -42,7 +45,12 @@ public class NotaController {
 
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA REGISTRAR NOTA");
-        Set<Categoria> todasCategorias =   categoriaRepository.findAllByUsuarioId(usuario.getId());
+        System.out.println(datosRegistroNota.categorias());
+
+        Set<Categoria> todasCategorias =   categoriaRepository
+                .findAllByUsuarioId(usuario.getId())
+                .stream()
+                .filter(nota->datosRegistroNota.categorias().contains(nota.getTitulo())).collect(Collectors.toSet());
         Nota nota = notaRepository.save(new Nota(datosRegistroNota,usuario,todasCategorias));
 
 
@@ -92,13 +100,19 @@ public class NotaController {
 
     @GetMapping("/{id}")
     public ResponseEntity retornaDatosNota(@PathVariable Long id) {
-        Nota nota = notaRepository.getReferenceById(id);
+        Optional<Nota> nota = Optional.of(notaRepository.getReferenceById(id));
+        if(nota.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        Nota foundedNota = nota.get();
+        Set<TituloColor> categorias = foundedNota.getCategorias().stream().map(n->new TituloColor(n.getTitulo(),n.getColor())).collect(Collectors.toSet());
+
         var datosNota = new DatosRespuestaNota(
-                nota.getUsuario().getEmail(),
-                nota.getTitulo(),
-                nota.getCategorias(),
-                nota.getCuerpo(),
-                nota.getArchivado()?"ARCHIVADO":"ACTIVO"
+                foundedNota.getUsuario().getEmail(),
+                foundedNota.getTitulo(),
+                categorias,
+                foundedNota.getCuerpo(),
+                foundedNota.getArchivado()?"ARCHIVADO":"ACTIVO"
         );
         return ResponseEntity.ok(datosNota);
     }

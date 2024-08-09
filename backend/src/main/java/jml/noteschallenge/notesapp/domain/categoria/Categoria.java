@@ -26,11 +26,13 @@ public class Categoria {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     private String titulo;
-    @ManyToMany(mappedBy = "categorias")
+    @ManyToMany(mappedBy = "categorias", cascade = CascadeType.REMOVE)
     private Set<Nota> notas;
+    private String color;
 
-    public Categoria(Usuario usuario, String titulo) {
+    public Categoria(Usuario usuario, String titulo, String color) {
         this.usuario=usuario;
         this.titulo = titulo;
+        this.color =color;
     }
 }

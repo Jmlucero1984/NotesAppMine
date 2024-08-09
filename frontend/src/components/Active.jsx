@@ -11,7 +11,8 @@ const Active = () => {
         const response = await requestFetchData('notas', 'GET')
         if (response.status === 200) {
             const json = await response.json()
-            setNotes(json)
+        console.log(json)
+        setNotes(json)
         }
 }
 

@@ -43,7 +43,7 @@ public class CategoriaController {
 
             throw new EntityAlreadyExistsException("Ya existe esa categoría para tu usuario en la Base de Datos");
         }
-         categoriaRepository.save(new Categoria(usuario,datosRegistroCategoria.titulo()));
+         categoriaRepository.save(new Categoria(usuario,datosRegistroCategoria.titulo(), datosRegistroCategoria.color()));
 
 
         return ResponseEntity.ok().build();
@@ -54,7 +54,8 @@ public class CategoriaController {
     public ResponseEntity retornaDatosCategoria(@PathVariable Long id) {
         Categoria categoria = categoriaRepository.getReferenceById(id);
         var datosCategoria = new DatosRespuestaCategoria(
-                categoria.getTitulo()
+                categoria.getTitulo(),
+                categoria.getColor()
 
 
         );

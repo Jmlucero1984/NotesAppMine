@@ -172,8 +172,21 @@ input {
   background-color: rgb(227, 227, 227)
 }
  
+.category-capsule{
+ padding: 3px 10px;
+ margin-left: 1px ;
  
-
+border-radius: 5px;
+}
+.category-capsule p {
+  font-size: x-small;
+  margin: 0px;
+}
+.category-capsules-container {
+  display: flex;
+  margin-top: 3px;
+  flex-direction: row;
+}
 /* MODAL */
 
 .overlay{

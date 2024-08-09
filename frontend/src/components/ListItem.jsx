@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Modal from './Modal';
 import { requestFetchData } from '../service/apiService'
+import Capsule from "./Capsule";
 
 const ListItem = ({ note, getData }) => {
 
@@ -21,7 +22,10 @@ const ListItem = ({ note, getData }) => {
     return (
         <li {...checkArchived(note)}>
             <div className="info-container">
-                <p className="note-category">{note.categoria}</p>
+                <div className="category-capsules-container">
+                {note.categorias?.map((categoria) => <Capsule key={`${note.id}_${categoria.titulo}`} categoria={categoria}/>)}
+                </div>
+              
                 <p className="note-title">{note.titulo}</p>
             </div>
             <div className="button-container">

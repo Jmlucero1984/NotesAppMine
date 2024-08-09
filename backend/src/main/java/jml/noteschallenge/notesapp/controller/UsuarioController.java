@@ -41,8 +41,8 @@ public class UsuarioController {
                 usuario.getEmail(),
                 usuario.getContraseña()
         );
-        Categoria general = new Categoria(usuario, "General");
-        Categoria importante = new Categoria(usuario,"Importante" );
+        Categoria general = new Categoria(usuario, "General","#cfe0ff");
+        Categoria importante = new Categoria(usuario,"Importante","#fffecf" );
         categoriaRepository.save(general);
         categoriaRepository.save(importante);
 

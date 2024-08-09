@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public record DatosRegistroCategoria (
         @NotBlank
-        String titulo
+        String titulo,
+        @NotBlank
+        String color
 ){
 }
