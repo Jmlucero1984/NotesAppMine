@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    #secrets:
+    #  - db-password
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - spring-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=notesapp
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+  backend:
+    container_name: spring-server
+    build: backend
+    ports:
+      - 8080:8080
+    environment:
+      - POSTGRES_DB=notesapp
+    networks:
+      - spring-postgres
+      - vite-spring
+    depends_on:
+      - db
+
+  frontend:
+    container_name: frontend-vite-react
+    build:
+      context: frontend
+      target: development
+    ports:
+      - 3000:3000
+    expose:
+      - 3000
+    volumes:
+      - ./frontend/src:/code/src
+      - /code/node_modules
+    networks:
+      - vite-spring
+    depends_on:
+      - backend
+
+volumes:
+  db-data:
+#secrets:
+  #db-password:
+    #file: db/password.txt
+networks:
+  spring-postgres:
+  vite-spring:
