@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @CrossOrigin(origins = {"http://localhost:3000","*"}, maxAge = 3600 )
 
@@ -41,18 +42,11 @@ public class NotaController {
 
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA REGISTRAR NOTA");
-        Nota nota = notaRepository.save(new Nota(datosRegistroNota,
-                usuarioRepository.findByEmail(datosRegistroNota.email_usuario()),
-                categoriaRepository.findByTituloAndUsuarioId(datosRegistroNota.categoria(),usuario.getId())));
-        DatosRespuestaNota datosRespuestaNota = new DatosRespuestaNota(
-                nota.getUsuario().getEmail(),
-                nota.getTitulo(),
-                nota.getCategoria().getTitulo(),
-                nota.getCuerpo(),
-                nota.getArchivado()?"ARCHIVADO":"ACTIVO"
-        );
-        URI url = uriComponentsBuilder.path("/notas/{id}").buildAndExpand(nota.getId()).toUri();
-        return ResponseEntity.created(url).body(datosRespuestaNota);
+        Set<Categoria> todasCategorias =   categoriaRepository.findAllByUsuarioId(usuario.getId());
+        Nota nota = notaRepository.save(new Nota(datosRegistroNota,usuario,todasCategorias));
+
+
+        return ResponseEntity.ok().build();
     }
 
 
@@ -78,13 +72,13 @@ public class NotaController {
     public ResponseEntity actualizarNota(@RequestBody @Valid DatosActualizarNota datosActualizarNota) {
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA ACTUALZIAR NOTA: "+datosActualizarNota.id());
-        System.out.println("NUEVO CATEGORIA: "+datosActualizarNota.categoria());
+        System.out.println("NUEVO CATEGORIA: "+datosActualizarNota.categorias());
         System.out.println("NUEVO ESTAOD: "+datosActualizarNota.estado());
         Optional<Nota> notaActualizar =  notaRepository.findByIdAndUsuarioId(datosActualizarNota.id(), usuario.getId());
         if(notaActualizar.isPresent()) {
             var nota = notaActualizar.get();
-            Categoria categoria = categoriaRepository.findByTituloAndUsuarioId(datosActualizarNota.categoria(),usuario.getId());
-            nota.actualizarDatos(datosActualizarNota,categoria);
+            Set<Categoria> categorias = categoriaRepository.findAllByNotasId(nota.getId());
+            nota.actualizarDatos(datosActualizarNota,categorias);
             notaRepository.save(nota);
             return ResponseEntity.ok().build();
         } else {
@@ -102,7 +96,7 @@ public class NotaController {
         var datosNota = new DatosRespuestaNota(
                 nota.getUsuario().getEmail(),
                 nota.getTitulo(),
-                nota.getCategoria().getTitulo(),
+                nota.getCategorias(),
                 nota.getCuerpo(),
                 nota.getArchivado()?"ARCHIVADO":"ACTIVO"
         );

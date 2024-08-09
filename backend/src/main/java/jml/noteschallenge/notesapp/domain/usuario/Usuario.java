@@ -13,7 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name= "usuarios")
+@Table(name= "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames = "email")})
 @Entity(name = "Usuario")
 @Getter
 @NoArgsConstructor
@@ -26,7 +26,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @Column(unique = true)
+
     private String email;
     private String contraseña;
 

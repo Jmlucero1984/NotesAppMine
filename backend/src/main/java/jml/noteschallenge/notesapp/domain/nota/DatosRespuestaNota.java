@@ -3,15 +3,15 @@ package jml.noteschallenge.notesapp.domain.nota;
 import jml.noteschallenge.notesapp.domain.categoria.Categoria;
 import jml.noteschallenge.notesapp.domain.categoria.DatosRespuestaCategoria;
 
+import java.util.Set;
+
 public record DatosRespuestaNota(
         String email_usuario,
         String titulo,
-        String categoria,
+        Set<Categoria> categorias,
         String cuerpo,
         String archivado
 ) {
 
-    public DatosRespuestaNota(Nota nota){
-        this(nota.getUsuario().getEmail(),nota.getTitulo(), nota.getCategoria().getTitulo(), nota.getCuerpo(),nota.getArchivado()?"ARCHIVADO":"ACTIVO");
-    }
+
 }

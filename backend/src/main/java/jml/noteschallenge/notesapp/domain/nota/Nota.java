@@ -8,6 +8,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Set;
+
 @Table(name= "notas")
 @Entity(name = "Nota")
 @Getter
@@ -24,16 +26,19 @@ public class Nota {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
     private String titulo;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "notas_categorias",
+            joinColumns = @JoinColumn(name = "nota_id"),
+            inverseJoinColumns = @JoinColumn(name = "categoria_id"))
+    private Set<Categoria> categorias;
     private String cuerpo;
     private Boolean archivado;
 
 
-    public Nota (DatosRegistroNota datosRegistroNota,Usuario usuario, Categoria categoria) {
+    public Nota (DatosRegistroNota datosRegistroNota,Usuario usuario, Set<Categoria> categorias) {
         this.usuario = usuario;
-        this.categoria = categoria;
+        this.categorias = categorias;
         this.titulo = datosRegistroNota.titulo();
         this.cuerpo = datosRegistroNota.cuerpo();
         this.archivado = datosRegistroNota.estado().equals("ARCHIVADO")?true:false;
@@ -41,16 +46,16 @@ public class Nota {
     }
 
 
-    public void actualizarDatos(DatosActualizarNota datosActualizarNota,Categoria categoria) {
+    public void actualizarDatos(DatosActualizarNota datosActualizarNota,Set<Categoria> categorias) {
         if (datosActualizarNota.titulo() != null) {
             this.titulo = datosActualizarNota.titulo();
         }
         if (datosActualizarNota.cuerpo() != null) {
             this.cuerpo = datosActualizarNota.cuerpo();
         }
-        if (datosActualizarNota.categoria() != null) {
-            System.out.println("ACTUALIZA:"+categoria.getTitulo());
-            this.categoria = categoria;
+        if (datosActualizarNota.categorias() != null) {
+
+            this.categorias = categorias;
         }
         if (datosActualizarNota.estado() != null) {
             this.archivado = datosActualizarNota.estado().equals("ARCHIVADO")?true:false;
