@@ -38,6 +38,7 @@ const FilterNotes = () => {
             getNotes()
             getCategorias()
             console.log("USE EFFECT")
+            console.table(notes)
  
     }, [])
 
@@ -90,7 +91,7 @@ const FilterNotes = () => {
             <label htmlFor="select-category" style={{ marginRight: "15px" }}>Elige una categoría:</label>
    
   
-                <label htmlFor="select-category">Elige una categoría:</label>
+             
                     <select id="select-category" name="categoria" value="seleccione" onChange={handleChangeCategory}>
                     <option key="default-key-value" value="" >{
 
@@ -107,7 +108,11 @@ const FilterNotes = () => {
                     <div className="category-capsules-container">
                 {selectedCategorias?.map((categoria) => <Capsule key={`${categoria.titulo}`} categoria={categoria} editMode={true} deleteCategoria={deleteCategoria}/>)}
 </div>
-
+ {selectedCategorias?.length > 0 ? 
+ notes.filter( t => t.categorias.some((cat) => selectedCategorias.some(sc => sc.titulo === cat.titulo))).map((note) => <ListItem key={note.id} note={note} getData={getNotes} />)
+ :  
+ <p style={{ textAlign: "center" }}>Aún no hay notas filtradas</p>}
+ 
 
         </>
 

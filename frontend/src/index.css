@@ -162,9 +162,11 @@ input {
   margin: 10px 0;
   background-color: rgb(215, 246, 236);
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.08 ) 0 0 0 1px;
+  box-shadow: rgba(0, 0, 0, 0.2 ) 0 2px 4px 2px;
   display: flex;  /* to let thing go left to right */
   justify-content: space-between ;
+ 
+
 
 }
 
