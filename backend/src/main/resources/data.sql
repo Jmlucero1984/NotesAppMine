@@ -4,7 +4,10 @@ INSERT INTO CATEGORIAS(usuario_id,titulo, color) values
  (1,'Importante','#eab676'),
  (1,'Superado','#eeeee4'),
  (1,'Pendiente','#efcd85'),
- (1,'Delegado','#bfffd4');
+ (1,'Delegado','#bfffd4'),
+  (1,'Super Urgente','#ee2e04'),
+  (1,'Problemas de otros','#eacd25'),
+  (1,'Legalmente complicado','#bfafd4');
 
 INSERT INTO NOTAS(usuario_id,titulo,cuerpo,archivado) values
  (1,'Fullstack container','Lograr conectar los 3 componentes, front, back y db y tomar como punto de partida',true),

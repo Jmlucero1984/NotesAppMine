@@ -177,15 +177,19 @@ input {
  margin-left: 1px ;
  
 border-radius: 5px;
+margin-bottom: 3px;
 }
 .category-capsule p {
   font-size: x-small;
   margin: 0px;
 }
 .category-capsules-container {
-  display: flex;
-  margin-top: 3px;
+  display:flex;
+  justify-content: flex-start;
+
+  margin-top: 4px;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 /* MODAL */
 

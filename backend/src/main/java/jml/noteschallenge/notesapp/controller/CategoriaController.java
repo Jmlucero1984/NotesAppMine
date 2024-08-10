@@ -2,22 +2,19 @@ package jml.noteschallenge.notesapp.controller;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jml.noteschallenge.notesapp.domain.categoria.*;
-import jml.noteschallenge.notesapp.domain.nota.DatosListadoNotas;
-import jml.noteschallenge.notesapp.domain.nota.DatosRegistroNota;
-import jml.noteschallenge.notesapp.domain.nota.DatosRespuestaNota;
-import jml.noteschallenge.notesapp.domain.nota.Nota;
+
 import jml.noteschallenge.notesapp.domain.usuario.Usuario;
 import jml.noteschallenge.notesapp.domain.usuario.UsuarioRepository;
 import jml.noteschallenge.notesapp.infra.errores.exceptions.EntityAlreadyExistsException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -63,7 +60,7 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public List<DatosListadoCategoriaSimple> listadoCategoriasPorUsuario () throws BadRequestException {
+    public List<DatosRespuestaCategoria> listadoCategoriasPorUsuario () throws BadRequestException {
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA LISTADO CATEGORIAS");
 
@@ -72,7 +69,7 @@ public class CategoriaController {
             throw new BadRequestException();
         }
 
-        return categoriaRepository.findAllByUsuario_id(usuario.getId()).stream().map(DatosListadoCategoriaSimple::new).toList();
+        return categoriaRepository.findAllByUsuario_id(usuario.getId()).stream().map(t->new DatosRespuestaCategoria(t.getTitulo(),t.getColor())).toList();
     }
 /*
     @GetMapping
