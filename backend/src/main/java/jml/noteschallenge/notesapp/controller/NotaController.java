@@ -17,7 +17,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -119,6 +118,7 @@ public class NotaController {
 
     @GetMapping
     public List<DatosListadoNotas> listadoNotasPorUsuario () throws BadRequestException {
+
         Usuario usuario = (Usuario) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA LISTADO NOTAS");
 

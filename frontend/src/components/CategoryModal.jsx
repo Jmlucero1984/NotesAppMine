@@ -2,12 +2,14 @@
 import { useState, useEffect, useRef } from "react"
  
 import { requestFetchData } from '../service/apiService';
-
+import {Wheel} from '@uiw/react-color';
+import { hsvaToHex } from '@uiw/color-convert';
 const CategoryModal = ({ setShowCategoryModal }) => {
  
     const [categorias, setCategorias] = useState([])
     const [error, setError] = useState(null)
     const inputRef = useRef(null);
+    const [hsva, setHsva] = useState({ h: 214, s: 43, v: 90, a: 1 });
 
     useEffect(() => {
       //  if (cookies.AuthToken) {
@@ -38,7 +40,7 @@ const CategoryModal = ({ setShowCategoryModal }) => {
             }
         })
         if (allchecked) {
-            const response = await requestFetchData('categorias', 'POST', { "titulo": titulo })
+            const response = await requestFetchData('categorias', 'POST', { "titulo": titulo, "color": hsvaToHex(hsva) })
             if (!response.ok) {
                 const errorText = await response.text(); // Extrae el mensaje de error
                 setError(errorText)
@@ -67,7 +69,12 @@ const CategoryModal = ({ setShowCategoryModal }) => {
                 </div>
                 <form>
                     <input required maxLength={30} placeholder="Tu nueva categoría aquí" name="titulo" ref={inputRef} onChange={() => setError("")} />
+                    <div style={{display:'flex',justifyContent:"center"}}>
                     {error && <p className="error">{error}</p>}
+                    <Wheel color={hsva} onChange={(color) => setHsva({ ...hsva, ...color.hsva })} />
+                
+                    </div>
+                    <div style={{ width: '100%', height: 34, marginTop: 20, background: hsvaToHex(hsva) }}></div>
                     <input className="crear" type="submit" value="CREAR CATEGORIA" onClick={postData} />
                 </form>
             </div>

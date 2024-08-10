@@ -33,7 +33,7 @@ public class AuthenticationController {
     @PostMapping
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAutenticacionUsuario datosAutenticacionUsuario) throws BadRequestException {
 
-
+        System.out.println("AUTHENTICAR USUARIO");
         Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),datosAutenticacionUsuario.contraseña());
         try {
             var usuarioAutenticado = authenticationManager.authenticate(authToken);

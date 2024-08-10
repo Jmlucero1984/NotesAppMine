@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import jml.noteschallenge.notesapp.domain.usuario.Usuario;
+import jml.noteschallenge.notesapp.infra.errores.exceptions.AuthenticationErrorException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class TokenService {
     private String apiSecret;
 
     public String generarToken(Usuario usuario) {
+        System.out.println("GENERAR TOKEN");
         try {
             Algorithm algorithm = Algorithm.HMAC256("apiSecret");
             return JWT.create()
@@ -32,25 +34,42 @@ public class TokenService {
             throw new RuntimeException();
         }
     }
+
     public String getSubject(String token) {
+        System.out.println("GET SUBJECT");
+        System.out.println("TOKEN: "+token);
         if (token == null) {
             throw new RuntimeException();
         }
         DecodedJWT verifier = null;
         try {
             Algorithm algorithm = Algorithm.HMAC256("apiSecret");
+
             verifier = JWT.require(algorithm)
                     .withIssuer("EnsolversNoteApp")
                     .build()
                     .verify(token);
             verifier.getSubject();
         } catch (JWTVerificationException exception) {
+            System.out.println("------ JWT VERIFICATION EXCEPTION ------");
             System.out.println(exception.toString());
+
+
         }
-        if (verifier.getSubject() == null) {
-            throw new RuntimeException("Verifier invalido");
+        try {
+        if (verifier == null) {
+
+            throw new AuthenticationErrorException("VERIFIER IS NULL");
         }
-        return verifier.getSubject();
+            if(verifier.getSubject() == null) {
+
+                throw new AuthenticationErrorException("VERIFIER.GET SUBJECT IS NULL");
+            }
+            return verifier.getSubject();
+        } catch (AuthenticationErrorException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     private Instant generarFechaExpiracion() {

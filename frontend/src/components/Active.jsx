@@ -19,7 +19,7 @@ const Active = () => {
     useEffect(() => {
 
      //   if (authToken) {
-            getNotes()
+             getNotes()
       //  }
     }, [])
 

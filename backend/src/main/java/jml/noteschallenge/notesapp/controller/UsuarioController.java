@@ -34,7 +34,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<DatosRespuestaUsuario> registrarUsuario (@RequestBody @Valid DatosRegistroUsuario datosRegistroUsuario, UriComponentsBuilder uriComponentsBuilder) {
         Usuario usuario = usuarioRepository.save(new Usuario(datosRegistroUsuario,bCryptPasswordEncoder.encode(datosRegistroUsuario.contraseña())));
-
+        System.out.println("REGISTRAR USUARIO");
         DatosRespuestaUsuario datosRespuestaUsuario = new DatosRespuestaUsuario(
                 usuario.getId(),
                 usuario.getNombre(),

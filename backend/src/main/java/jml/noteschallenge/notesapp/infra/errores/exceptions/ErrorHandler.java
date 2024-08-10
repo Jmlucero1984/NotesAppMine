@@ -1,5 +1,7 @@
 package jml.noteschallenge.notesapp.infra.errores.exceptions;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -45,6 +47,9 @@ public class ErrorHandler {
 
         return ResponseEntity.badRequest().body("Ha ocurrido un error con las credenciales");
     }
+
+
+
 
 
     public String extractBetweenHammers(String message) {
