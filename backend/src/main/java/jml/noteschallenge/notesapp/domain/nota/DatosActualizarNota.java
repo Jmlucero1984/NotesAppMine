@@ -17,7 +17,7 @@ public record DatosActualizarNota(
         String email_usuario,
         @NotBlank
         String titulo,
-        @NotBlank
+        @NotNull
         Set<TituloColor> categorias,
         @NotBlank
         String cuerpo,

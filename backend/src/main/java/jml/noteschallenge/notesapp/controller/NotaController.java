@@ -46,12 +46,14 @@ public class NotaController {
         System.out.println("USUARIO: "+usuario.getEmail()+" SOLICITA REGISTRAR NOTA");
         System.out.println(datosRegistroNota.categorias());
 
-        Set<Categoria> todasCategorias =   categoriaRepository
+        Set<String> titulosCategoriasActualizar = datosRegistroNota.categorias().stream().map(t->t.titulo()).collect(Collectors.toSet());
+
+
+        Set<Categoria> categorias = categoriaRepository
                 .findAllByUsuarioId(usuario.getId())
                 .stream()
-                .filter(nota->datosRegistroNota.categorias().contains(nota.getTitulo())).collect(Collectors.toSet());
-        Nota nota = notaRepository.save(new Nota(datosRegistroNota,usuario,todasCategorias));
-
+                .filter(c->titulosCategoriasActualizar.contains(c.getTitulo())).collect(Collectors.toSet());
+        Nota nota = notaRepository.save(new Nota(datosRegistroNota,usuario,categorias));
 
         return ResponseEntity.ok().build();
     }
@@ -82,9 +84,18 @@ public class NotaController {
         System.out.println("NUEVO CATEGORIA: "+datosActualizarNota.categorias());
         System.out.println("NUEVO ESTAOD: "+datosActualizarNota.estado());
         Optional<Nota> notaActualizar =  notaRepository.findByIdAndUsuarioId(datosActualizarNota.id(), usuario.getId());
+
         if(notaActualizar.isPresent()) {
+            Set<String> titulosCategoriasActualizar = datosActualizarNota.categorias().stream().map(t->t.titulo()).collect(Collectors.toSet());
             var nota = notaActualizar.get();
-            Set<Categoria> categorias = categoriaRepository.findAllByNotasId(nota.getId());
+
+            Set<Categoria> categorias = categoriaRepository
+                    .findAllByUsuarioId(usuario.getId())
+                    .stream()
+                    .filter(c->titulosCategoriasActualizar.contains(c.getTitulo())).collect(Collectors.toSet());
+
+            System.out.println("LAS CATEGORIAS ENCONTRADAS");
+            System.out.println(categorias);
             nota.actualizarDatos(datosActualizarNota,categorias);
             notaRepository.save(nota);
             return ResponseEntity.ok().build();

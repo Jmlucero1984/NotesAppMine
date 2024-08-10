@@ -35,8 +35,8 @@ const CategoryModal = ({ setShowCategoryModal }) => {
         categorias?.forEach((c) => {
             if (titulo.toLowerCase() === c.titulo.toLowerCase()) {
                 setError("Ya existe esa categoría...")
-                allchecked = false;
-                return
+              allchecked = false;
+              return
             }
         })
         if (allchecked) {

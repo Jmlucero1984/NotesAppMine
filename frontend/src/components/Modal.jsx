@@ -10,9 +10,9 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
     const [categoriasDisponibles, setCategoriasDisponibles] = useState([])
     const [data, setData] = useState({
         email_usuario: cookies.Email,
-        id: editMode ? note.id : "",
+        id: editMode ? note.id : 0,
         titulo: editMode ? note.titulo : "",
-        categorias: editMode ? note.categorias : null,
+        categorias: editMode ? note.categorias : [],
         cuerpo: editMode ? note.cuerpo : '',
         estado: editMode ? note.estado : "ACTIVO"
     })
@@ -30,9 +30,13 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
         const response = await requestFetchData('categorias', 'GET')
         if (response.status === 200) {
             const json = await response.json()
+            if(editMode) {
             const disponibles = json.filter(t=>!isPresent(t,data.categorias))
-            console.log(disponibles)
-            setCategoriasDisponibles(disponibles)
+       
+            setCategoriasDisponibles(disponibles) }
+
+            else {
+                setCategoriasDisponibles(json)}
      
         }
     }
@@ -40,7 +44,7 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
     const postNote = async (e) => {
         e.preventDefault()
         const response = await requestFetchData('notas', 'POST', data)
-        if (response.status === 201) {
+        if (response.status === 200) {
             setShowModal(false)
             getData()
         }
@@ -61,6 +65,7 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
     }
 
     const isPresent = (target, categorias) => {
+        if(categorias==null) return false
         console.log("=====",target.titulo,"======")
         for (let index = 0; index < categorias.length; index++) {
             const element = categorias[index];
@@ -130,7 +135,7 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
                         .map((categoria) => <option key={categoria.titulo} value={categoria.titulo} >{categoria.titulo} </option>)*/}
                     </select>
                     <div className="category-capsules-container">
-                {data.categorias?.map((categoria) => <Capsule key={`${note.id}_${categoria.titulo}`} categoria={categoria} editMode={true} deleteCategoria={deleteCategoria}/>)}
+                {data.categorias?.map((categoria) => <Capsule key={`${data.id}_${categoria.titulo}`} categoria={categoria} editMode={true} deleteCategoria={deleteCategoria}/>)}
                 </div>
                   
                     {editMode &&

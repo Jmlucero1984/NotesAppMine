@@ -10,8 +10,11 @@ import lombok.NoArgsConstructor;
 
 import java.util.Set;
 
-@Table(name= "categorias")
+
+
+@Table(name = "categorias", uniqueConstraints = @UniqueConstraint(columnNames = {"usuario_id", "titulo"}))
 @Entity(name = "Categoria")
+
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,8 +26,10 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne(fetch = FetchType.LAZY)
+
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+    @Column(name = "titulo")
     private String titulo;
     @ManyToMany(mappedBy = "categorias", cascade = CascadeType.REMOVE)
     private Set<Nota> notas;

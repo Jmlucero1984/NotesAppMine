@@ -38,7 +38,7 @@ public class CategoriaController {
         Optional<Categoria> categoria = Optional.ofNullable(categoriaRepository.findByTituloAndUsuarioId(datosRegistroCategoria.titulo(), usuario.getId()));
         if(categoria.isPresent()){
 
-            throw new EntityAlreadyExistsException("Ya existe esa categoría para tu usuario en la Base de Datos");
+           throw new EntityAlreadyExistsException("Ya existe esa categoría para tu usuario en la Base de Datos");
         }
          categoriaRepository.save(new Categoria(usuario,datosRegistroCategoria.titulo(), datosRegistroCategoria.color()));
 

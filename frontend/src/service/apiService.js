@@ -20,7 +20,7 @@ export const requestFetchData = async (endpoint, method, data = null) => {
             if (!response.ok) {
                 // Lanza un error que será capturado por el bloque catch
                 console.log(response.status)
-                Cookies.remove('AuthToken')
+               // Cookies.remove('AuthToken')
               
             }
             return response;
