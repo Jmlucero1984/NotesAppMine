@@ -65,14 +65,15 @@ const Modal = ({ mode, setShowModal, note, getData }) => {
     }
 
     const isPresent = (target, categorias) => {
-        if(categorias==null) return false
+       /* if(categorias==null) return false
         console.log("=====",target.titulo,"======")
         for (let index = 0; index < categorias.length; index++) {
             const element = categorias[index];
             if (element.titulo == target.titulo) return true
             
         }
-        return false;
+        return false;*/
+        return categorias?.map(t=>t.titulo).includes(target.titulo)
 
     }
     const deleteCategoria = (e,categoria) => {

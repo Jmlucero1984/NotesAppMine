@@ -56,14 +56,9 @@ const FilterNotes = () => {
 
     }
     const isPresent = (target, categorias) => {
-        if(categorias==null) return false
-  
-        for (let index = 0; index < categorias.length; index++) {
-            const element = categorias[index];
-            if (element.titulo == target.titulo) return true
-            
-        }
-        return false;
+      
+        return categorias?.map(t=>t.titulo).includes(target.titulo)
+      
 
     }
     const handleChangeCategory = (e) => {
