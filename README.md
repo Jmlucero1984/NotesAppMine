@@ -1,5 +1,5 @@
 # Notes App
-Online app for creating notes - Ensolvers Challenge
+Online app for creating notes 
 
 ## 🎇 General
 

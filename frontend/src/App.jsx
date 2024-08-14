@@ -30,7 +30,7 @@ function App() {
  
      </BrowserRouter>
     </> }
-    <p className="copyright">© NotesApp Ensolvers</p>
+    <p className="copyright">© NotesApp</p>
   </div>
   )
 }
