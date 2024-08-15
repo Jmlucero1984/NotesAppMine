@@ -12,7 +12,7 @@
 	<artifactId>notesapp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>notesapp</name>
-	<description>Notes application for Ensolvers challenge</description>
+	<description>Notes application</description>
 	<url/>
 
 	<properties>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/jmlucero-ensolvers-challenge.iml" filepath="$PROJECT_DIR$/.idea/jmlucero-ensolvers-challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/jmlucero-notesapp.iml" filepath="$PROJECT_DIR$/.idea/jmlucero-notesapp.iml" />
     </modules>
   </component>
 </project>
