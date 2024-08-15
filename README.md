@@ -1,5 +1,5 @@
-# Notes App
-Online app for creating notes 
+# Notes App (DOCKERIZED FULLSTACK PROJECT)
+Online app for creating notes with different category tags
 
 ## 🎇 General
 
