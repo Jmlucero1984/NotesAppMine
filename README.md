@@ -62,7 +62,7 @@ User Stories
 *Create a new category tag with your custom color* 
 
 ![screenshot4](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG)
-<div style="display: flex; margin: 0 auto;">
+<div style="display: flex; justify-content: center">
  <img src="https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG" alt="Descripción de la imagen" >
 </div>
 
