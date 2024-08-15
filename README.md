@@ -43,6 +43,8 @@ User Stories
 
    🙏 Keep in mind even though it may seems to be all mounted and running, in an "oldie" equipment it could take a while to send requests and receive responses, please check de docker server console to verify transactions.
 
+   TIP: Sometimes, even though the container dependecy order is specified on the docker-compose file, you must execute first the DB container in order to make sure Spring Boot finds it at the very first moment.
+
 ## 📷 Screenshots
 
 *Registration form* 
