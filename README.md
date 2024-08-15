@@ -62,7 +62,10 @@ User Stories
 *Create a new category tag with your custom color* 
 
 ![screenshot4](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG)
-<img src="https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG" alt="Descripción de la imagen" style="display: block; margin: 0 auto;">
+<div style="display: flex; margin: 0 auto;">
+ <img src="https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG" alt="Descripción de la imagen" >
+</div>
+
 
 *Tab for filtering notes according to one or many categories* 
 
