@@ -45,14 +45,25 @@ User Stories
 
 ## 📷 Screenshots
 
-*Note creation in Modal mode* 
+*Registration form* 
+
 ![screenshot1](https://github.com/Jmlucero1984/NotesAppMine/blob/45d844098ecce388195ff25aa0042da50fd9e34b/screenshot_01.JPG)
 
-*Showing active notes* 
-![screenshot2](https://github.com/user-attachments/assets/c076e1eb-7bda-461c-9bb3-b781ca250c82)
+*List of active notes with multiple category tags* 
 
-*Tab for filtering notes according to a category* 
-![screenshot3](https://github.com/user-attachments/assets/c5884a66-2ed5-42d1-9f89-ec8366d335cc)
+![screenshot2](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_02.JPG)
+
+*Note creation/edition in Modal mode* 
+
+![screenshot3](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_03.JPG)
+
+*Create a new category tag with your custom color* 
+
+![screenshot4](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG)
+
+*Tab for filtering notes according to one or many categories* 
+
+![screenshot5](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_05.JPG)
 
 
  
