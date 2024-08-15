@@ -7,24 +7,17 @@ Using Spring Boot in the backend, React to develop the frontend and a PostgreSQL
 For authentication it implements JWT and cookie storage.
 
 ## 🎯 Key requirementents
-Phase 1
+
 User Stories
+ - [x] Login/Authentication
  - [x] Notes CRUD
  - [x] Able to archive/unarchive notes
  - [x] Able to list user's active notes
  - [x] Able to list user's archived notes
-
-Phase 2
-User Stories
  - [x] Able to create new categories for current user
- - [x] Able to add A category to notes
  - [x] Able to change category to notes
- - [ ] Able to add many categories to notes
- - [ ] Able to delete categories
-
-Extra
-User Stories
- - [x] Login/Authentication
+ - [x] Able to add many categories to notes
+ - [x] Able to delete categories
  - [x] Fitler notes by category
 
  
