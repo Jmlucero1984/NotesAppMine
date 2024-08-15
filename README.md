@@ -47,7 +47,7 @@ User Stories
 
 ## 📷 Screenshots
 
-<p align="center">
+
 *Registration form* 
 
 ![screenshot1](https://github.com/Jmlucero1984/NotesAppMine/blob/45d844098ecce388195ff25aa0042da50fd9e34b/screenshot_01.JPG)
@@ -63,9 +63,9 @@ User Stories
 *Create a new category tag with your custom color* 
 
  
-
+<p align="center">
  <img src="https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG" alt="Descripción de la imagen" >
-
+</p>
 
  
 
@@ -73,6 +73,6 @@ User Stories
 
 ![screenshot5](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_05.JPG)
 
-</p>
+
  
  
