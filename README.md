@@ -60,10 +60,11 @@ User Stories
 
 ![screenshot3](https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_03.JPG)
 
-*Create a new category tag with your custom color* 
+
 
  
 <p align="center">
+ *Create a new category tag with your custom color* 
  <img src="https://github.com/Jmlucero1984/NotesAppMine/blob/b2cda10190494564c42ba0bb353e222af303a8e7/screenshot_04.JPG" alt="Descripción de la imagen" >
 </p>
 
