@@ -46,7 +46,7 @@ User Stories
 ## 📷 Screenshots
 
 *Note creation in Modal mode* 
-![screenshot1](https://github.com/user-attachments/assets/0701258f-b572-43d3-8051-e5424747c50a)
+![screenshot1](https://github.com/Jmlucero1984/NotesAppMine/blob/45d844098ecce388195ff25aa0042da50fd9e34b/screenshot_01.JPG)
 
 *Showing active notes* 
 ![screenshot2](https://github.com/user-attachments/assets/c076e1eb-7bda-461c-9bb3-b781ca250c82)
