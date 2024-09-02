@@ -6,7 +6,7 @@ Online app for creating notes with different category tags
 Using Spring Boot in the backend, React to develop the frontend and a PostgreSQL database, implements a minimal interface to register a user, login, create notes with title, body and category. Implements react router to navigate beetwen three tabs, the Active notes, the Archived ones, and the last one, to filter all notes (active and archived) according to a selected category. You can also create new categories only available to the current user.
 For authentication it implements JWT and cookie storage.
 
-## 🎯 Key requirementents
+## 🎯 Key requirements
 
 User Stories
  - [x] Login/Authentication
